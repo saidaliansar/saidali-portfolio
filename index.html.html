@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saidali A — AI Researcher · AR/VR ·</title>
+<meta name="description" content="Portfolio of Saidali A: AI researcher, AR/VR developer and full stack developer, M.Tech Computer Science student.">
+<style>
+:root{--bg:#07080d;--fg:#eef0f6;--mut:#8b91a7;--card:rgba(255,255,255,.05);--bd:rgba(255,255,255,.1);--a:#7c5cff;--b:#22d3ee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f7fb;--fg:#11131c;--mut:#566;--card:rgba(0,0,0,.04);--bd:rgba(0,0,0,.12)}}
+:root[data-theme="light"]{--bg:#f6f7fb;--fg:#11131c;--mut:#566;--card:rgba(0,0,0,.04);--bd:rgba(0,0,0,.12)}
+:root[data-theme="dark"]{--bg:#07080d;--fg:#eef0f6;--mut:#8b91a7;--card:rgba(255,255,255,.05);--bd:rgba(255,255,255,.1)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+canvas#bg{position:fixed;inset:0;z-index:-1;width:100%;height:100%}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--b));z-index:99}
+#load{position:fixed;inset:0;background:var(--bg);z-index:100;display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#load.off{opacity:0;visibility:hidden}
+#load b{font-size:2rem;letter-spacing:.3em;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;animation:p 1s infinite alternate}
+@keyframes p{to{opacity:.3}}
+nav{position:sticky;top:0;z-index:50;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:.8rem 1.2rem;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--bd)}
+nav .l{display:flex;gap:1rem;overflow-x:auto;scrollbar-width:none;font-size:.9rem;color:var(--mut)}
+nav .l a:hover{color:var(--fg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.ib{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:.35rem .7rem}
+section{max-width:1100px;margin:auto;padding:5rem 1.2rem}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 .4rem}
+h2+p{color:var(--mut);margin:0 0 2rem}
+.g{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:1.2rem;backdrop-filter:blur(14px);transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--a)}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+.btn{display:inline-block;padding:.7rem 1.3rem;border-radius:12px;font-weight:600;border:1px solid var(--bd);background:var(--card)}
+.btn.p{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border:0}
+#hero{min-height:92vh;display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:center}
+#hero h1{font-size:clamp(2.6rem,9vw,5.5rem);line-height:1;margin:.3rem 0}
+.sub{color:var(--mut)}
+#type{color:var(--b);min-height:1.6em;font-weight:600}
+#type:after{content:"|";animation:p .6s infinite}
+.av{width:min(300px,70vw);aspect-ratio:1;margin:auto;border-radius:50%;display:grid;place-items:center;font-size:5rem;font-weight:800;background:conic-gradient(from 0deg,var(--a),var(--b),var(--a));padding:4px;animation:sp 12s linear infinite}
+.av span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--bg);animation:sp 12s linear infinite reverse}
+@keyframes sp{to{transform:rotate(360deg)}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-top:2rem}
+.stats b{font-size:2rem;display:block}.stats small{color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
+.chip{font-size:.78rem;padding:.2rem .6rem;border-radius:99px;border:1px solid var(--bd);color:var(--mut)}
+.tl{border-left:2px solid var(--bd);padding-left:1.4rem;display:grid;gap:1.4rem}
+.tl .card{position:relative}.tl .card:before{content:"";position:absolute;left:-1.85rem;top:1.4rem;width:12px;height:12px;border-radius:50%;background:var(--a);box-shadow:0 0 14px var(--a)}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.filters .on{background:var(--a);border-color:var(--a);color:#fff}
+.thumb{height:130px;border-radius:12px;margin-bottom:.8rem;background:linear-gradient(135deg,var(--c1),var(--c2));position:relative;overflow:hidden}
+.thumb:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.25) 50%,transparent 70%);transform:translateX(-100%);animation:sh 3s infinite}
+@keyframes sh{to{transform:translateX(100%)}}
+.mas{columns:3 200px;gap:1rem}.mas div{break-inside:avoid;margin-bottom:1rem;border-radius:14px;display:grid;place-items:end start;padding:.8rem;font-size:.85rem;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2))}
+dialog{background:var(--bg);color:var(--fg);border:1px solid var(--bd);border-radius:18px;max-width:560px;width:92%}
+dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+input,textarea{width:100%;padding:.7rem;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:inherit;margin-bottom:.7rem}
+#cp input{margin:0 0 .5rem}#cp li{list-style:none;padding:.5rem;border-radius:8px;cursor:pointer}#cp li:hover,#cp li.s{background:var(--card)}#cp ul{margin:0;padding:0;max-height:260px;overflow:auto}
+footer{text-align:center;color:var(--mut);padding:2rem 1rem;border-top:1px solid var(--bd)}
+#cur{position:fixed;width:22px;height:22px;border:2px solid var(--b);border-radius:50%;pointer-events:none;z-index:98;transform:translate(-50%,-50%);transition:width .2s,height .2s;display:none}
+@media(hover:hover){#cur{display:block}}
+@media(max-width:760px){#hero{grid-template-columns:1fr}.av{order:-1;width:180px;font-size:3rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+:focus-visible{outline:2px solid var(--b);outline-offset:2px}
+/* v2: readability, atmosphere, transitions */
+:root{--mut:#b9bfd6}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--mut:#3b4358}}
+:root[data-theme="light"]{--mut:#3b4358}:root[data-theme="dark"]{--mut:#b9bfd6}
+body{font-size:17px;line-height:1.7}
+h2{font-size:clamp(2rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.025em;line-height:1.05}
+h2+p{font-size:1.1rem}
+.sub{font-size:1.02rem}
+.chip{font-size:.85rem;color:var(--fg);border-color:var(--bd);background:var(--card)}
+body:before{content:"";position:fixed;inset:-10%;z-index:-2;background:radial-gradient(circle at 15% 10%,rgba(124,92,255,.3),transparent 40%),radial-gradient(circle at 90% 40%,rgba(34,211,238,.18),transparent 40%),radial-gradient(circle at 30% 100%,rgba(236,72,153,.2),transparent 40%);animation:au 14s ease-in-out infinite alternate}
+@keyframes au{to{transform:scale(1.12) translate(-2%,2%)}}
+.g{background-image:linear-gradient(90deg,var(--a),var(--b),var(--a));background-size:200% 100%;animation:gs 7s linear infinite}
+@keyframes gs{to{background-position:200% 0}}
+.card:hover{box-shadow:0 22px 50px -22px var(--a)}
+.rv{filter:blur(8px);transition:opacity .9s,transform .9s,filter .9s}.rv.in{filter:none}
+nav .l{gap:1.2rem}nav .l a{white-space:nowrap;padding:.2rem 0;border-bottom:2px solid transparent;transition:color .3s,border-color .3s}
+nav .l a.act{color:var(--fg);border-color:var(--b)}
+#cv{position:fixed;inset:0;z-index:150;pointer-events:none;display:grid;place-items:center;background:linear-gradient(120deg,var(--a),#ec4899 55%,var(--b));transform:translateX(-101%);transition:transform .65s cubic-bezier(.77,0,.18,1)}
+#cv.in{transform:none;pointer-events:all}#cv.out{transform:translateX(101%)}#cv.rs{transition:none}
+#cv b{font-size:clamp(2.5rem,12vw,9rem);font-weight:800;letter-spacing:-.04em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35);opacity:0;transform:translateY(30px);transition:opacity .35s .3s,transform .5s .3s}
+#cv.in b{opacity:1;transform:none}
+.pb{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.pc{display:flex;flex-direction:column;gap:.7rem;align-items:flex-start}.pc h3{margin:0;font-size:1.3rem;line-height:1.2}.pc p{margin:0}
+.pc .lk{margin-top:auto;color:var(--b);text-decoration:underline;text-underline-offset:4px}.pc.off .lk{color:var(--mut);text-decoration:none;font-weight:500}
+.av span{overflow:hidden}.av img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.ic{width:1.3em;height:1.3em;flex:none}.ic.pin{width:1.1em;height:1.1em;vertical-align:-.15em;margin-right:.35rem}
+.btn .ic{width:1.1em;height:1.1em;vertical-align:-.15em;margin-right:.5rem}
+.soc{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem}
+.so{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:1px solid var(--bd);transition:transform .3s,background .3s,box-shadow .3s,color .3s}
+.so .ic{width:22px;height:22px}
+.so:hover{transform:translateY(-4px) scale(1.08);background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border-color:transparent;box-shadow:0 12px 28px -10px var(--a)}
+#cl .card{display:flex;align-items:center;gap:1rem}
+.cb{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--a),var(--b));color:#fff}.cb .ic{width:24px;height:24px}
+.now{margin-top:1.2rem;max-width:540px}
+.dot{width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pu 2s infinite}
+@keyframes pu{70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+/* project card images */
+.thumb{height:150px;background:radial-gradient(circle at 25% 15%,rgba(255,255,255,.1),transparent 60%),#0c0f1d}
+.thumb:after{display:none}
+.il{position:absolute;inset:0;width:100%;height:100%;padding:.5rem}
+.il *{stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.il .a{stroke:var(--c1);fill:none}.il .b{stroke:var(--c2);fill:none}
+.il .fa{fill:var(--c1);stroke:none}.il .fb{fill:var(--c2);stroke:none}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+</style>
+</head>
+<body>
+<div id="load"><b>SAIDALI A</b></div>
+<div id="bar"></div><div id="cur"></div><canvas id="bg" aria-hidden="true"></canvas>
+<div id="cv" aria-hidden="true"><b></b></div>
+<nav aria-label="Main">
+<a href="#top"><b class="g">SA.</b></a>
+<div class="l"><a href="#about">About</a><a href="#edu">Education</a><a href="#skills">Skills</a><a href="#certs">Certifications</a><a href="#research">Research</a><a href="#pubs">Publications</a><a href="#projects">Projects</a><a href="#teach">Academic Mentoring</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></div>
+<div style="display:flex;gap:.4rem"><button class="ib" id="kbd" aria-label="Open command palette">⌘SA</button><button class="ib" id="th" aria-label="Toggle theme">◐</button></div>
+</nav>
+
+<main id="top">
+<section id="hero">
+<div>
+<p class="sub">Hello, I'm</p>
+<h1 class="g">SAIDALI A</h1>
+<p class="sub">M.Tech Scholar • Researcher • Developer • Educator</p>
+<p id="type" aria-live="off"></p>
+<div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem">
+<a class="btn p" href="#projects">View Projects</a><a class="btn" href="#contact" id="cn">Connect with me</a>
+</div>
+<div class="card now" id="now"></div>
+<div class="soc" id="soc"></div>
+<div class="stats">
+<div><b data-n="6">0</b><small>Research & Dev Projects</small></div>
+<div><b data-n="3">0</b><small>Research Papers</small></div>
+<div><b data-n="4">0</b><small>AR/VR Applications</small></div>
+<div><b data-n="30" data-s="+">0</b><small>Technologies</small></div>
+</div>
+</div>
+<div class="av" role="img" aria-label="Photo of Saidali A"><span><i class="g" style="font-style:normal">SA</i></span></div>
+</section>
+
+<section id="about"><div class="rv">
+<h2>About <span class="g">Me</span></h2><p>Researching intelligent, immersive and human-centred systems.</p>
+<div class="card"><p style="margin:0">I am an M.Tech Computer Science student, researcher, developer, and passionate educator with interests in Artificial Intelligence, Machine Learning, and Extended Reality. My work focuses on designing intelligent and interactive systems that enhance learning, engagement, and real-world problem solving. I am passionate about research, innovation, and technology-driven education, with experience in developing AI-powered applications and immersive digital experiences. Beyond research and development, I enjoy mentoring students and simplifying complex concepts to create meaningful and engaging learning experiences.</p>
+<div class="chips"><span class="chip">Artificial Intelligence</span><span class="chip">Machine Learning</span><span class="chip">Blockchain</span><span class="chip">Augmented Reality</span><span class="chip">Virtual Reality</span><span class="chip">Digital Twins</span><span class="chip">HCI</span><span class="chip">Explainable AI</span></div></div>
+</div></section>
+
+<section id="edu"><div class="rv">
+<h2>Education <span class="g">Timeline</span></h2><p>Click a card to expand details.</p>
+<div class="tl" id="ed"></div>
+</div></section>
+
+<section id="skills"><div class="rv">
+<h2>Technical <span class="g">Skills</span></h2><p>Tools across AI, XR and the web.</p>
+<div class="grid" id="sk"></div>
+</div></section>
+
+<section id="certs"><div class="rv">
+<h2><span class="g">Certifications</span></h2><p>Courses and credentials.</p>
+<div class="grid" id="ce"></div>
+</div></section>
+
+<section id="research"><div class="rv">
+<h2>Research <span class="g">Interests</span></h2><p>Tap a node to explore the connection to my work.</p>
+<div class="grid" id="rs"></div>
+<p id="rsd" class="card sub" style="margin-top:1rem">Select a research area above.</p>
+</div></section>
+
+<section id="pubs"><div class="rv">
+<h2>Publications</h2><p>Select a paper to read it on IEEE Xplore.</p>
+<div class="pb" id="pb"></div>
+<p style="margin:1.8rem 0 0"><a class="btn p" id="rp" target="_blank" rel="noopener">Read Papers on IEEE Xplore</a></p>
+</div></section>
+
+<section id="projects"><div class="rv">
+<h2>Featured <span class="g">Projects</span></h2><p>Filter by domain.</p>
+<div class="filters" id="fl"></div>
+<div class="grid" id="pj"></div>
+</div></section>
+
+<section id="teach" data-l="Teaching"><div class="rv">
+<h2>Teaching: <span class="g">Reputed institutions in Kollam</span></h2><p>Academic Mentoring</p>
+<div class="grid">
+<div class="card"><b>Engineering</b><br><span class="sub">CSE core Papers.</span></div>
+<div class="card"><b>School</b><br><span class="sub">Secondary and Higher Secondary mathematics.</span></div>
+<div class="card"><b>Board/University</b><br><span class="sub">KTU,CBSE,ICSE and Kerala State Board.</span></div>
+
+</div></div></section>
+
+<section id="ach"><div class="rv">
+<h2>Achievements & <span class="g">Experience</span></h2><p>Research, development and leadership.</p>
+<h3 style="margin:0 0 1rem">Experience</h3>
+<div class="tl">
+<div class="card"><b>Intern · C-DIT</b><br><span class="sub">Centre for Development of Imaging Technology, Thiruvananthapuram, Kerala</span>
+<div class="chips"><span class="chip">Jun 2026 – Aug 2026</span><span class="chip">AR/VR</span></div>
+<p class="sub" style="margin:.7rem 0 0">Assisting in the development of immersive AR/VR applications and interactive experiences.</p></div>
+<div class="card"><b>Workshop on AR/VR Technologies</b><br><span class="sub">TKM College of Engineering, Kollam</span>
+<div class="chips"><span class="chip">Augmented Reality</span><span class="chip">Virtual Reality</span></div></div>
+</div>
+<h3 style="margin:2.2rem 0 1rem">Achievements</h3>
+<div class="grid">
+<div class="card"><b>IEEE Publication</b><br><span class="sub">CLIP-Based Intelligent Waste Sorter (2026)</span></div>
+<div class="card"><b>Research Paper Presentation</b><br><span class="sub">IC3SIS '26 · 29 May 2026</span><p class="sub" style="margin:.5rem 0 0">SCMS School of Engineering and Technology</p></div>
+<div class="card"><b>NPTEL Certifications</b><br><span class="sub">Virtual and Augmented Reality, Advanced Computer Networks, Operating Systems</span></div>
+</div>
+</div></section>
+<section id="gallery">
+  <div class="rv">
+    <h2><span class="g">Highlights</span></h2>
+    <p>Academic and professional activities.</p>
+
+    <div class="highlights">
+
+      <div class="highlight-card">
+        <img src="photo.jpg" alt="Conference Presentation">
+        <div class="overlay">
+          <h4>Conference Presentation</h4>
+          <p>SCMS School Of Engineering</p>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img src="photo2.jpeg" alt="Workshop at TKM">
+        <div class="overlay">
+          <h4>Workshop</h4>
+          <p>TKM College of Engineering</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.highlights{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-top:20px;
+}
+
+.highlight-card{
+  position:relative;
+  height:320px; /* increased height */
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.highlight-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 10%; /* shows more of the top */
+  transition:transform .4s ease;
+}
+
+.highlight-card:hover img{
+  transform:scale(1.05);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:16px;
+  background:linear-gradient(
+    transparent,
+    rgba(0,0,0,.75)
+  );
+  color:#fff;
+}
+
+.overlay h4{
+  margin:0;
+  font-size:1rem;
+}
+
+.overlay p{
+  margin:4px 0 0;
+  font-size:.85rem;
+  opacity:.9;
+}
+</style>
+<section id="contact"><div class="rv">
+<h2>Get in <span class="g">Touch</span></h2><p><svg class="ic pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" fill="currentColor"/></svg>Kollam, Kerala, India</p>
+<div class="grid" id="cl" style="margin-bottom:1rem"></div>
+<form class="card" id="cf"><input id="fn" placeholder="Name" aria-label="Name" required><input id="fe" type="email" placeholder="Your email" aria-label="Your email" required><textarea id="fm" rows="4" placeholder="Message" aria-label="Message" required></textarea><button class="btn p" type="submit">Send message</button><p id="ok" class="sub" role="status"></p></form>
+</div></section>
+</main>
+<footer><div class="soc" id="soc2" style="justify-content:center;margin:0 0 1rem"></div>© 2026 Saidali A ·</footer>
+
+<dialog id="cp"><input id="cpi" placeholder="Type a command…" aria-label="Command"><ul id="cpl"></ul></dialog>
+
+<script>
+/* =====================  EDIT ME  =====================
+   1. Put your photo and resume in the SAME folder as this file, then set the file names below.
+   2. Paste your links. Leave a link as "" to hide its destination.
+===================================================== */
+const ME={
+ photo:"photo.jpg",          // your photo file (square or portrait works best)
+ resume:"resume.pdf",        // your resume file (shown in the Contact section)
+ email:"Saidaliansar123@gmail.com",
+ linkedin:"https://www.linkedin.com/in/saidali-a-99322223",
+ github:"https://github.com/saidaliansar",
+ instagram:"https://www.instagram.com/_said__alii",
+ phone:"9961331658",         // 10 digits are treated as an Indian number (+91)
+ ieee:""                     // optional: your IEEE Xplore author profile link (the Read Papers button opens it)
+};
+// the box on the home page
+const NOW={doing:"Pursuing M.Tech in Computer Science with a passion for research, innovation, and technology-driven education.",open:["Research collaboration","Software Development","Academic Mentoring"]};
+// CERTIFICATIONS: [name, issuing organisation, year, certificate link]  -> copy a row to add more
+const CERT=[
+["Intoduction to Operating Systems","NPTEL","2023","https://drive.google.com/file/d/16rZiz2gW7g9FWmVMdvwoSjAvHJr4wW_w/view?usp=drivesdk"],
+["Advanced Computer Networks","NPTEL","2026","https://drive.google.com/file/d/15zVhxe8Ep4JETX63hq2rrcicgFdBOlod/view?usp=drivesdk"],
+["Foundation for Virtual and Augmented Reality Systems","NPTEL","2026","https://drive.google.com/file/d/1XpvXRIyP57Dn3H-erAX53461W9MMNix0/view?usp=drivesdk"]];
+// accept a bare handle or a full link
+const fix=(v,b)=>!v?"":/^https?:\/\//i.test(v)?v:b+v.replace(/^@/,"");
+ME.linkedin=fix(ME.linkedin,"https://www.linkedin.com/in/");ME.github=fix(ME.github,"https://github.com/");ME.instagram=fix(ME.instagram,"https://www.instagram.com/");
+// opens a ready-to-write email: Gmail compose on desktop, the mail app on phones
+const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+function mailHref(su="",body=""){const e=ME.email;if(!e)return"";const q=(k,v)=>v?`&${k}=${encodeURIComponent(v)}`:"";
+ if(!mobile&&/@(gmail|googlemail)\.com$/i.test(e))return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(e)}${q("su",su)}${q("body",body)}`;
+ return `mailto:${e}?${(q("subject",su)+q("body",body)).slice(1)}`}
+// PAPERS: [tag, title, description, link]  -> paste the IEEE Xplore URL between the last quotes of each paper
+const PB=[
+["IEEE","CLIP-Based Intelligent Waste Sorter: A Multimodal Framework for Zero-Shot, Few-Shot, and Unsupervised Waste Classification","Proposed a CLIP-based framework integrating multimodal learning techniques to enhance automated waste management processes.","https://ieeexplore.ieee.org/document/11608299"]];
+// EDUCATION: [title, school and year, details shown when the card is clicked]
+const EDU=[
+ ["M.Tech", "TKM College of Engineering · Present", "Pursuing M.Tech in Computer Science at one of Kerala's premier engineering institutions. Engaged in advanced research in Artificial Intelligence,Machine Learning,AR/VR and Human-Computer Interaction while actively contributing to academic and project-based innovations."],
+ ["B.Tech", "College of Engineering Perumon", "Completed my undergraduate studies in Computer Science, building a strong foundation in programming, software development, and emerging technologies. This journey strengthened my passion for research, innovation, and lifelong learning."],
+ ["Higher Secondary (12th)", "Govt.HSS Vellamanal Mayyanad", "Successfully completed Higher Secondary education with a focus on Mathematics and Science, laying the foundation for my interest in engineering and technology."],
+ ["SSLC (10th)", "MKLM HSS Kannanalloor", "Established a solid academic foundation while developing critical thinking, curiosity, and a keen interest in science and technology."]
+];
+document.getElementById("ed").innerHTML=EDU.map(e=>`<div class="card" tabindex="0"><b>${e[0]}</b><br><span class="sub">${e[1]||"Add school name and year"}</span><div class="more sub" hidden style="margin-top:.5rem">${e[2]}</div></div>`).join("");
+const $=s=>document.querySelector(s),R=document.documentElement;
+addEventListener("load",()=>setTimeout(()=>$("#load").classList.add("off"),700));
+// reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.1});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+// counters
+const co=new IntersectionObserver(e=>e.forEach(x=>{if(!x.isIntersecting)return;const el=x.target,n=+el.dataset.n,s=el.dataset.s||"";let i=0;const t=setInterval(()=>{i++;el.textContent=Math.round(n*i/40)+s;if(i>=40)clearInterval(t)},30);co.unobserve(el)}));
+document.querySelectorAll("[data-n]").forEach(e=>co.observe(e));
+// typing
+const ph=["Creating Intelligent Solutions for Education and Industry","Enthusiastic About AI, ML, and XR","Dedicated Educator with a Passion for Learning"];let pi=0,ci=0,del=0;
+(function ty(){const t=ph[pi];ci+=del?-1:1;$("#type").textContent=t.slice(0,ci);let d=del?25:60;if(!del&&ci===t.length){del=1;d=1400}else if(del&&ci===0){del=0;pi=(pi+1)%ph.length;d=300}setTimeout(ty,d)})();
+// progress, cursor
+addEventListener("scroll",()=>{$("#bar").style.width=scrollY/(R.scrollHeight-innerHeight)*100+"%"},{passive:true});
+addEventListener("pointermove",e=>{const c=$("#cur");c.style.left=e.clientX+"px";c.style.top=e.clientY+"px";c.style.width=c.style.height=e.target.closest("a,button,.card")?"40px":"22px"});
+// theme
+$("#th").onclick=()=>{const d=R.dataset.theme?R.dataset.theme==="dark":!matchMedia("(prefers-color-scheme:light)").matches;R.dataset.theme=d?"light":"dark"};
+// education expand
+document.querySelectorAll("#edu .card").forEach(c=>{const t=()=>{const m=c.querySelector(".more");m.hidden=!m.hidden};c.onclick=t;c.onkeydown=e=>{if(e.key==="Enter")t()}});
+// skills
+const SK={"Languages":["C","Python","Java"],"Frontend":["HTML","CSS","JavaScript","React"],"Backend":["Flask","Node.js","REST APIs"],"AI":["TensorFlow","Scikit-Learn","Hugging Face","LangChain","OpenAI APIs","Vector DBs","FAISS","RAG Systems"],"AR/VR":["Unity","AR Foundation","ARCore","XR Interaction Toolkit","Vuforia","Meta Quest"],"Databases":["MySQL","SQLite"]};
+$("#sk").innerHTML=Object.entries(SK).map(([k,v])=>`<div class="card"><b>${k}</b><div class="chips">${v.map(x=>`<span class="chip">${x}</span>`).join("")}</div></div>`).join("");
+// research
+const RS={"Artificial Intelligence":"LLM and RAG pipelines powering assistants in my lab projects.","Explainable AI":"Making model decisions transparent for learners and users.","Immersive Technologies":"Designing XR experiences that improve understanding.","Virtual Reality":"VR labs and virtual tourism with haptics and safety monitoring.","Augmented Reality":"Mobile AR application for Museum.","Digital Twins":"Virtual counterparts of lab equipment and exhibits.","Context-Aware Systems":"Adapting content to the user's location, objects and progress.","Human-Computer Interaction":"Natural voice, gesture and spatial interaction.","Intelligent Learning Systems":"Adaptive tutoring combining AI with immersion."};
+$("#rs").innerHTML=Object.keys(RS).map(k=>`<button class="card" style="text-align:left">${k}</button>`).join("");
+document.querySelectorAll("#rs button").forEach(b=>b.onclick=()=>{$("#rsd").innerHTML=`<b style="color:var(--fg)">${b.textContent}</b> — ${RS[b.textContent]}`});
+$("#pb").innerHTML=PB.map(p=>{const u=p[3],t=u?(/ieeexplore/.test(u)?"Read on IEEE Xplore":"Read paper"):"Link coming soon",o=u?`a href="${u}" target="_blank" rel="noopener"`:"div",c=u?"a":"div";return `<${o} class="card pc${u?"":" off"}"><span class="chip">${p[0]}</span><h3>${p[1]}</h3><p class="sub">${p[2]}</p><b class="lk">${t}</b></${c}>`}).join("");
+// Projects
+// Each row: [title, domain, tags, colour 1, colour 2, image file, drawing].
+// To use a real screenshot, save it in an "images" folder with the file name shown here. If the file is missing, the drawing is shown.
+const P = [
+  ["AI-Powered VR Chemistry Laboratory", "VR",
+    ["Virtual Reality", "RAG Assistant", "Haptic Feedback", "Safety Monitoring", "Immersive Learning"],
+    "#7c5cff", "#22d3ee", "images/vr-chemistry-lab.jpg", "chem"
+  ],
+
+  ["Context-Aware AR Museum Application", "AR",
+    ["NFC Integration", "Digital Twins", "AI Descriptions", "Interactive Learning"],
+    "#f59e0b", "#ef4444", "images/ar-museum.jpg", "museum"
+  ],
+  
+  ["CLIP-Based Intelligent Waste Sorter", "AI",
+    ["Computer Vision", "CLIP", "Few-Shot Learning", "Waste Classification"],
+    "#8b5cf6", "#06b6d4", "images/waste-sorter.jpg", "waste"
+  ],
+  ["VR Seven Wonders Hub", "VR",
+    ["Virtual Tourism", "360° Exploration", "Interactive Environments"],
+    "#06b6d4", "#10b981", "images/vr-seven-wonders.jpg", "wonders"
+  ],
+
+  ["Employee Attrition Prediction System", "AI",
+    ["Machine Learning", "Predictive Analytics", "Data Analysis"],
+    "#14b8a6", "#7c5cff", "images/attrition.jpg", "attrition"
+  ],
+  ["Interactive Multimedia Kiosk System", "AI",
+    ["ESP32", "Touch Sensors", "Python Integration", "Multimedia Automation"],
+    "#f97316", "#facc15", "images/kiosk.jpg", "kiosk"
+  ],
+
+  ["Blockchain-Based Product Verification", "AI",
+    ["Blockchain", "Flask", "Solidity", "Review Validation"],
+    "#10b981", "#3b82f6", "images/blockchain.jpg", "chain"
+  ]
+];
+
+// drawings used when no screenshot is available
+const ill=b=>`<svg class="il" viewBox="0 0 320 160" aria-hidden="true">${b}</svg>`;
+const star=`d="M160 112l4 8 9 1-6.5 6 1.6 9-8.1-4.3-8.1 4.3 1.6-9-6.5-6 9-1z"`;
+const ILL={
+chem:ill(`<path class="a" d="M150 36v32l-26 44a8 8 0 0 0 7 12h58a8 8 0 0 0 7-12l-26-44V36M142 36h36"/><path class="b" d="M133 100h54"/><circle class="fb" cx="158" cy="90" r="3"/><circle class="fb" cx="170" cy="82" r="2.5"/><rect class="b" x="222" y="58" width="72" height="38" rx="13"/><circle class="b" cx="243" cy="77" r="7"/><circle class="b" cx="273" cy="77" r="7"/><path class="b" d="M222 77h-14M294 77h14"/><circle class="a" cx="62" cy="58" r="10"/><circle class="a" cx="96" cy="96" r="8"/><circle class="a" cx="52" cy="106" r="6"/><path class="a" d="M69 65l20 24M90 99l-32 6"/>`),
+museum:ill(`<rect class="a" x="110" y="24" width="56" height="112" rx="11"/><path class="a" d="M129 34h18"/><path class="b" d="M138 60l16 9v18l-16 9-16-9V69z"/><path class="b" d="M138 78v18M122 69l16 9 16-9"/><path class="a" d="M186 62a26 26 0 0 1 0 36M200 50a44 44 0 0 1 0 60M214 38a62 62 0 0 1 0 84"/><rect class="b" x="238" y="68" width="46" height="46" rx="9"/><circle class="a" cx="261" cy="91" r="9"/>`),
+waste:ill(`<path class="a" d="M122 58h76l-8 70a8 8 0 0 1-8 7h-44a8 8 0 0 1-8-7z"/><path class="a" d="M112 58h96M146 58v-9h28v9"/><path class="b" d="M142 74l3 48M160 74v48M178 74l-3 48"/><circle class="b" cx="62" cy="64" r="14"/><rect class="a" x="52" y="98" width="26" height="26" rx="5"/><path class="b" d="M250 56l14 24h-28z"/><path class="a" d="M236 110h28M256 102l8 8-8 8"/>`),
+wonders:ill(`<circle class="a" cx="105" cy="80" r="46"/><ellipse class="a" cx="105" cy="80" rx="19" ry="46"/><path class="a" d="M59 80h92M68 56h74M68 104h74"/><path class="b" d="M190 128l42-76 42 76z"/><path class="b" d="M213 128l19-34 19 34"/>`),
+attrition:ill(`<path class="a" d="M54 134h170"/><rect class="fb" x="68" y="76" width="24" height="58" rx="3" style="opacity:.55"/><rect class="fb" x="104" y="56" width="24" height="78" rx="3" style="opacity:.55"/><rect class="fb" x="140" y="92" width="24" height="42" rx="3" style="opacity:.55"/><rect class="fb" x="176" y="106" width="24" height="28" rx="3" style="opacity:.55"/><path class="a" d="M62 66l50-24 36 34 44 20"/><circle class="b" cx="268" cy="58" r="11"/><path class="b" d="M248 100a20 20 0 0 1 40 0"/><path class="a" d="M256 122h30M278 114l8 8-8 8"/>`),
+kiosk:ill(`<rect class="b" x="38" y="58" width="72" height="46" rx="6"/><rect class="b" x="54" y="70" width="40" height="22" rx="3"/><path class="b" d="M28 68h10M28 81h10M28 94h10M110 68h10M110 81h10M110 94h10"/><path class="a" d="M120 81h44"/><rect class="a" x="166" y="30" width="112" height="72" rx="8"/><path class="a" d="M222 102v16M202 118h40"/><path class="fb" d="M210 52l24 14-24 14z"/><circle class="a" cx="74" cy="132" r="9"/><circle class="b" cx="74" cy="132" r="18" style="opacity:.6"/>`),
+chain:ill(`<rect class="a" x="34" y="56" width="56" height="44" rx="9"/><rect class="b" x="132" y="56" width="56" height="44" rx="9"/><rect class="a" x="230" y="56" width="56" height="44" rx="9"/><path class="a" d="M90 78h42M188 78h42"/><path class="b" d="M148 78l8 8 16-16"/><path class="fb" ${star} transform="translate(-48 0)"/><path class="fb" ${star}/><path class="fb" ${star} transform="translate(48 0)"/>`)
+};
+
+let f = "All";
+
+function rp() {
+  $("#pj").innerHTML = P
+    .filter(p => f === "All" || p[1] === f)
+    .map((p, i) => `
+      <article class="card">
+        <div class="thumb" style="--c1:${p[3]};--c2:${p[4]}">${ILL[p[6]] || ""}${p[5] ? `<img src="${p[5]}" alt="${p[0]}" loading="lazy" onerror="this.remove()">` : ""}</div>
+        <b>${p[0]}</b>
+        <div class="chips">
+          ${p[2].map(x => `<span class="chip">${x}</span>`).join("")}
+        </div>
+      </article>
+    `)
+    .join("");
+}
+
+$("#fl").innerHTML = ["All", "AI", "AR", "VR"]
+  .map(x => `<button class="ib${x === "All" ? " on" : ""}">${x}</button>`)
+  .join("");
+
+document.querySelectorAll("#fl button").forEach(b => {
+  b.onclick = () => {
+    f = b.textContent;
+    document.querySelectorAll("#fl button")
+      .forEach(x => x.classList.toggle("on", x === b));
+    rp();
+  };
+});
+
+rp();
+   // form
+$("#cf").onsubmit=e=>{e.preventDefault();const o=$("#ok");if(!ME.email){o.textContent="Add your email in the EDIT ME block first.";return}
+ const n=$("#fn").value.trim(),f=$("#fe").value.trim(),m=$("#fm").value.trim();
+ const href=mailHref("Message from "+n+" via your portfolio",m+"\n\n— "+n+"\nReply to: "+f);
+ const same=mobile||href.startsWith("mailto:");const w=open(href,same?"_self":"_blank");if(!w&&!same)location.href=href;
+ o.textContent="Your email is opening with the message ready. Press Send there to deliver it."};
+// command palette
+const C=[["Go to About","#about"],["Go to Skills","#skills"],["Go to Certifications","#certs"],["Go to Research","#research"],["Go to Publications","#pubs"],["Go to Projects","#projects"],["Go to Teaching","#teach"],["Go to Contact","#contact"],["Toggle theme","th"]];
+function rc(q=""){$("#cpl").innerHTML=C.filter(c=>c[0].toLowerCase().includes(q.toLowerCase())).map(c=>`<li data-h="${c[1]}">${c[0]}</li>`).join("")}
+$("#cpl").onclick=e=>{const h=e.target.dataset.h;if(!h)return;cp.close();h==="th"?$("#th").click():jump(h)};
+$("#cpi").oninput=e=>rc(e.target.value);
+function oc(){rc();cp.showModal();$("#cpi").value="";$("#cpi").focus()}
+$("#kbd").onclick=oc;addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="k"){e.preventDefault();oc()}});
+// particles
+const cv=$("#bg"),x=cv.getContext("2d");let W,H,pts=[];
+function rz(){W=cv.width=innerWidth;H=cv.height=innerHeight;pts=Array.from({length:Math.min(90,W/12|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+rz();addEventListener("resize",rz);
+(function dr(){x.clearRect(0,0,W,H);const dark=getComputedStyle(R).getPropertyValue("--bg").trim().startsWith("#0");x.fillStyle=dark?"rgba(124,92,255,.8)":"rgba(80,60,200,.6)";
+pts.forEach((p,i)=>{p.x=(p.x+p.vx+W)%W;p.y=(p.y+p.vy+H)%H;x.fillRect(p.x,p.y,2,2);for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<120){x.strokeStyle=`rgba(34,211,238,${.15*(1-d/120)})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});requestAnimationFrame(dr)})();
+// photo: swaps in only if the file loads, otherwise the SA initials stay
+if(ME.photo){const im=new Image();im.alt="Saidali A";im.src=ME.photo;im.onload=()=>{const sp=document.querySelector(".av span");sp.textContent="";sp.appendChild(im)}}
+// contact links, resume
+const IC={
+git:'<path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>',
+in:'<path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>',
+ig:'<g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/>',
+mail:'<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g>',
+phone:'<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+cert:'<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.5 14.5-1.5 7 5-3 5 3-1.5-7"/></g>',
+cv:'<path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'};
+const ic=n=>`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
+// [label, icon, link, hint when empty]
+const SO=[["Email","mail",mailHref("Hello Saidali, I came across your portfolio and would love to connect."),"add address"],["Phone","phone",ME.phone&&"tel:"+(/^\d{10}$/.test(ME.phone)?"+91":"")+ME.phone,"add number"],["LinkedIn","in",ME.linkedin,"add profile"],["GitHub","git",ME.github,"add profile"],["Instagram","ig",ME.instagram,"add profile"],["Resume","cv",ME.resume,"add file"]];
+const ext=(h,n)=>h&&!/^(mailto|tel):/.test(h)?` target="_blank" rel="noopener"${n==="Resume"?" download":""}`:"";
+$("#cl").innerHTML=SO.map(([n,i,h,d])=>`<a class="card" href="${h||"#contact"}"${ext(h,n)}><span class="cb">${ic(i)}</span><span><b>${n}</b><br><span class="sub">${h?(n==="Email"?ME.email:n==="Phone"?ME.phone:"Open"):d}</span></span></a>`).join("");
+const soc=SO.filter(x=>x[1]!=="cv").map(([n,i,h])=>`<a class="so" href="${h||"#contact"}" aria-label="${n}" title="${n}"${ext(h,n)}>${ic(i)}</a>`).join("");
+$("#soc").innerHTML=soc;$("#soc2").innerHTML=soc;
+// home box + certifications
+$("#cn").insertAdjacentHTML("afterbegin",ic("mail"));
+$("#rp").href=ME.ieee||"https://ieeexplore.ieee.org/search/searchresult.jsp?newsearch=true&queryText="+encodeURIComponent("Saidali A");
+$("#now").innerHTML=`<div style="display:flex;align-items:center;gap:.6rem"><i class="dot"></i><b>Currently</b></div><p class="sub" style="margin:.4rem 0 .7rem">${NOW.doing}</p><div class="chips" style="margin:0"><span class="sub">Open to</span>${NOW.open.map(x=>`<span class="chip">${x}</span>`).join("")}</div>`;
+$("#ce").innerHTML=CERT.map(c=>{const u=c[3],o=u?`a href="${u}" target="_blank" rel="noopener"`:"div",k=u?"a":"div";return `<${o} class="card" style="display:flex;gap:1rem;align-items:flex-start"><span class="cb">${ic("cert")}</span><span><b>${c[0]}</b><br><span class="sub">${[c[1],c[2]].filter(Boolean).join(" · ")}</span>${u?'<br><span class="lk" style="color:var(--b);text-decoration:underline;text-underline-offset:4px">View certificate</span>':""}</span></${k}>`}).join("");
+// page-to-page curtain transition
+let busy=false;
+function jump(h){const t=$(h);if(!t)return;
+ if(matchMedia("(prefers-reduced-motion:reduce)").matches){t.scrollIntoView({behavior:"smooth"});return}
+ if(busy)return;busy=true;const c=$("#cv");
+ c.firstChild.textContent=t.id==="top"?"Home":(t.dataset.l||t.querySelector("h2").textContent.replace(/\s+/g," ").trim());
+ c.className="in";
+ setTimeout(()=>{t.scrollIntoView({behavior:"instant"});try{history.replaceState(null,"",h)}catch(_){}c.className="out"},650);
+ setTimeout(()=>{c.className="rs";c.offsetWidth;c.className="";busy=false},1400)}
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute("href");e.preventDefault();if(h.length>1)jump(h)});
+// active nav link
+const nl=[...document.querySelectorAll("nav .l a")];
+const so=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)nl.forEach(a=>a.classList.toggle("act",a.getAttribute("href")==="#"+x.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll("main section").forEach(e=>so.observe(e));
+</script>
+</body>
+</html>
